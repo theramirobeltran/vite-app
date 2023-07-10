@@ -55,7 +55,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: production-files
+          name: github-pages
           path: ./dist
 
       - name: Setup Pages
