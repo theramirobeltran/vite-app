@@ -1,0 +1,46 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Build Application
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["*"]
+
+jobs:
+  # Single deploy job since we're just deploying
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Done
+        run: echo "Done building"
+
+  test-build:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run test
+
+      - name: Done
+        run: echo "Done testing"
